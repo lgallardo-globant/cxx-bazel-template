@@ -30,6 +30,11 @@ Compile the test program by running the following command on the /workspace
 bazel build //test:hello_world_test
 ~~~
 
+or simple use
+
+~~~bash
+bazel build //...
+~~~
 
 ## Running
 
@@ -42,7 +47,7 @@ Run the hello_world program by running the following command on the /workspace
 Run the test program by running the following command on the /workspace
 
 ~~~bash
-bazel-bin/test/hello_world_test
+./bazel-bin/test/hello_world_test
 ~~~
 
 ## Utils

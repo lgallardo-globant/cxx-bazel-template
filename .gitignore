@@ -31,6 +31,11 @@
 *.out
 *.app
 
+# Some IDE
+.vscode/*
+.idea/*
+workspace.*
+.code-workspace*
 
 # Created by https://www.toptal.com/developers/gitignore/api/bazel
 # Edit at https://www.toptal.com/developers/gitignore?templates=bazel
