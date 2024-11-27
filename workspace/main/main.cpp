@@ -1,13 +1,17 @@
 // main/main.cpp
 #include <iostream>
 #include <chrono>
-#include <thread>          // Include for std::this_thread::sleep_for
-#include "PIDController.h" // Include the PID controller header
+#include <thread>
+#include "Planner.h"
+#include "PIDController.h"
 
 int main()
 {
-    // Initialize PID controller with example gains
+    // Create a PIDController instance with gains
     PIDController pid(1.0, 0.1, 0.05);
+
+    // Create a Planner instance, passing the PIDController
+    Planner planner(pid);
 
     // Define the setpoint and initial process value
     double setpoint = 100.0;     // Desired target value
@@ -20,11 +24,10 @@ int main()
     // Simulate a control loop
     while (std::chrono::steady_clock::now() < end_time)
     {
-        // Compute the control signal
-        double control_signal = pid.compute(setpoint, process_value);
+        // Compute the control signal using the planner
+        double control_signal = planner.plan(setpoint, process_value);
 
         // Simulate the system's response to the control signal
-        // (For demonstration purposes, we add a fraction of the control signal to the process value)
         process_value += control_signal * 0.1;
 
         // Print the current state
@@ -35,8 +38,8 @@ int main()
                   << "s, Process Value: " << process_value
                   << ", Control Signal: " << control_signal << std::endl;
 
-        // Sleep for a short duration to simulate a control loop interval (e.g., 100ms)
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        // Sleep for a short duration to simulate a control loop interval (e.g., 500ms)
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     std::cout << "Control loop ended after 10 seconds." << std::endl;

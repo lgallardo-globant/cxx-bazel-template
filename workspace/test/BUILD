@@ -15,3 +15,13 @@ cc_test(
         "@com_google_googletest//:gtest_main",  # Google Test main library
     ],
 )
+
+cc_test(
+    name = "planner_test",
+    srcs = ["planner_test.cpp"],  # Test file for Planner
+    deps = [
+        "//main:planner_lib",             # Depend on Planner library
+        "@com_google_googletest//:gtest", # Google Test library
+        "@com_google_googletest//:gmock", # Google Mock library
+    ],
+)

@@ -6,6 +6,14 @@ cc_library(
 )
 
 cc_library(
+    name = "planner_lib",
+    srcs = ["Planner.cpp"],
+    hdrs = ["Planner.h"],
+    deps = [":pid_controller_lib"],  # Depend on the PIDController library
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
     name = "hello_world_lib",
     srcs = ["hello_world.cpp"],
     hdrs = ["hello_world.h"],
@@ -16,12 +24,12 @@ cc_library(
 cc_library(
     name = "main_lib",
     srcs = ["main.cpp"],
-    deps = [":hello_world_lib", ":pid_controller_lib"],  # Add PID dependency here
+    deps = [":hello_world_lib", ":pid_controller_lib", ":planner_lib"],  # Add PID dependency here
     visibility = ["//visibility:public"],  # Make the target visible to all packages
 )
 
 cc_binary(
     name = "hello_world",
     srcs = ["hello_world.cpp"],
-    deps = [":main_lib", ":pid_controller_lib"],  # Binary depends on main_lib and PID
+    deps = [":main_lib", ":pid_controller_lib", ":planner_lib"],  # Binary depends on main_lib and PID
 )
