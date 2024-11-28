@@ -21,10 +21,10 @@ public:
     PIDController(double kp, double ki, double kd);
 
     // Method to compute the control output
-    double compute(double setpoint, double current_value);
+    virtual double compute(double setpoint, double current_value);
 
-    // Reset the integral and previous error terms
-    void reset();
+    // Method to reset the integral and previous error terms
+    virtual void reset();
 
     // Setters for PID gains
     void setKp(double kp);
@@ -35,6 +35,9 @@ public:
     double getKp() const;
     double getKi() const;
     double getKd() const;
+
+    // Virtual destructor for proper cleanup of derived classes
+    virtual ~PIDController() = default;
 };
 
 #endif // PIDCONTROLLER_H
