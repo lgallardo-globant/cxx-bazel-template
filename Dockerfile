@@ -15,4 +15,7 @@ RUN curl -Lo /usr/local/bin/bazel https://github.com/bazelbuild/bazelisk/release
 
 RUN bazel --version
 
+RUN printf "\nalias ls='ls --color=auto'\n" >> ~/.bashrc
+RUN printf "\nalias ll='ls -alF'\n" >> ~/.bashrc
+
 WORKDIR /workspace
