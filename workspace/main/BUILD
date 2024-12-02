@@ -1,3 +1,18 @@
+
+cc_library(
+    name = "validator_lib",
+    srcs = ["validator.cpp"],  # Source file for the validator library
+    hdrs = ["validator.hpp"],    # Header file for the validator library
+    visibility = ["//visibility:public"],  # Make this library accessible to all packages
+)
+
+cc_library(
+    name = "account_lib",
+    srcs = ["account.cpp"],  # Source file for the account library
+    hdrs = ["account.hpp"],    # Header file for the account library
+    visibility = ["//visibility:public"],  # Make this library accessible to all packages
+)
+
 cc_library(
     name = "pid_controller_lib",
     srcs = ["PIDController.cpp"],  # Source file for the PID controller library
@@ -31,5 +46,5 @@ cc_library(
 cc_binary(
     name = "hello_world",
     srcs = ["hello_world.cpp"],
-    deps = [":main_lib", ":pid_controller_lib", ":planner_lib"],  # Binary depends on main_lib and PID
+    deps = [":main_lib", ":pid_controller_lib", ":planner_lib", ":account.lib", ":validator.lib"],  # Binary depends on main_lib and PID
 )

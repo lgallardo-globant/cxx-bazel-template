@@ -4,9 +4,18 @@
 #include <thread>
 #include "Planner.h"
 #include "PIDController.h"
+#include "account.hpp"
+#include "validator.hpp"
 
 int main()
 {
+    // create account
+    Account account;
+    account.deposit(10.5);      // make a deposit
+
+    // Create validator
+    Validator mValidator{5, 10};
+
     // Create a PIDController instance with gains
     PIDController pid(1.0, 0.1, 0.05);
 

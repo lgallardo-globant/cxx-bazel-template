@@ -25,3 +25,21 @@ cc_test(
         "@com_google_googletest//:gtest"
     ],
 )
+
+cc_test(
+    name = "account_test",
+    srcs = ["account_fixture_test.cpp"],  # Test source file
+    deps = [
+        "//main:account_lib",      # Depend on the account library
+        "@com_google_googletest//:gtest_main",  # Google Test main library
+    ],
+)
+
+cc_test(
+    name = "validator_test",
+    srcs = ["validator_parameterized_test.cpp"],  # Test source file
+    deps = [
+        "//main:validator_lib",      # Depend on the validator library
+        "@com_google_googletest//:gtest_main",  # Google Test main library
+    ],
+)
